@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9DDD1618-1D59-462B-AEDB-2E2D569ABE58}</ProjectGuid>
+    <ProjectGuid>{FFB50591-D255-4944-A6AE-5D59B03BE35C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Drivr.Windows</RootNamespace>
@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Drivr\Drivr.csproj">
-      <Project>{288bf44c-cfc9-4861-8cdd-71b2029fc735}</Project>
+      <Project>{f7f8970d-53d6-4d59-b6f9-36f17eb2ef39}</Project>
       <Name>Drivr</Name>
     </ProjectReference>
   </ItemGroup>

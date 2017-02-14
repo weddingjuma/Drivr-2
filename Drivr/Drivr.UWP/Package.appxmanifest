@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="ddc46f69-5d84-4869-89e5-a34f65342e2c"
+    Name="b0d8718d-0e4b-4ae3-bfb7-18f8e625759a"
     Publisher="CN=arnva"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="ddc46f69-5d84-4869-89e5-a34f65342e2c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="b0d8718d-0e4b-4ae3-bfb7-18f8e625759a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Drivr.UWP</DisplayName>

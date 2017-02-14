@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Drivr.Pages;
+using Xamarin.Forms;
 
 namespace Drivr
 {
@@ -8,7 +9,7 @@ namespace Drivr
         {
             InitializeComponent();
 
-            MainPage = new Pages.MainPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

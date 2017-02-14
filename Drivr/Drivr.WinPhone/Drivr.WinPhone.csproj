@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A28CBCE-D600-417C-989E-43BEDD5A29E8}</ProjectGuid>
+    <ProjectGuid>{962D944C-3169-444C-8F72-085A93554FEC}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Drivr.WinPhone</RootNamespace>
@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Drivr\Drivr.csproj">
-      <Project>{288bf44c-cfc9-4861-8cdd-71b2029fc735}</Project>
+      <Project>{f7f8970d-53d6-4d59-b6f9-36f17eb2ef39}</Project>
       <Name>Drivr</Name>
     </ProjectReference>
   </ItemGroup>

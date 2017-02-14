@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E732560C-0E26-4527-9E2B-68141DCFD2AA}</ProjectGuid>
+    <ProjectGuid>{02AEE8BD-C1E6-4556-A044-33DE785AACBB}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Drivr.iOS</RootNamespace>
@@ -139,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Drivr\Drivr.csproj">
-      <Project>{288bf44c-cfc9-4861-8cdd-71b2029fc735}</Project>
+      <Project>{f7f8970d-53d6-4d59-b6f9-36f17eb2ef39}</Project>
       <Name>Drivr</Name>
     </ProjectReference>
   </ItemGroup>
