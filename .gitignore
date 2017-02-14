@@ -250,3 +250,19 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# compiled output
+/Webapp/dist
+/Webapp/tmp
+
+# dependencies
+/Webapp/node_modules
+/Webapp/bower_components
+
+# misc
+/Webapp/.sass-cache
+/Webapp/connect.lock
+/Webapp/coverage/*
+/Webapp/libpeerconnection.log
+/Webapp/npm-debug.log*
+/Webapp/testem.log
