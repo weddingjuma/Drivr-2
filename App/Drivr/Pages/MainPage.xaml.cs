@@ -1,8 +1,6 @@
-﻿using Xamarin.Forms;
-
-namespace Drivr.Pages
+﻿namespace Drivr.Pages
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage
     {
         public MainPage()
         {

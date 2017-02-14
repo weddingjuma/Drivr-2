@@ -1,9 +1,8 @@
 ﻿using Drivr.Pages;
-using Xamarin.Forms;
 
 namespace Drivr
 {
-    public partial class App : Application
+    public partial class App
     {
         public App()
         {
