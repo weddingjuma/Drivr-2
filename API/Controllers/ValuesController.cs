@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ClassLibrary;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -10,7 +11,8 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new[] { "value1", "value2" };
+            Hello hello = new Hello();
+            return new[] { "value1", "value2", nameof(hello) , hello.World };
         }
 
         // GET api/values/5

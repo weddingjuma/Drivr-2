@@ -7,7 +7,6 @@ namespace Drivr
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 
