@@ -1,5 +1,20 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<header>
+    <nav class="nav nav--default">
+        <ul class="nav_left">
+            <li class="nav_item"><a class="padding-xs-left padding-xs-right" href="#">Drivr {{fa-icon 'car'}}</a></li>
+        </ul>
+        <ul class="nav_right">
+            <li class="nav_item"><a class="padding-xs-left padding-xs-right" href="#">Login {{fa-icon 'sign-in'}}</a></li>
+            <li class="nav_item"><a class="padding-xs-left padding-xs-right" href="#">Register {{fa-icon 'user-plus'}}</a></li>
+        </ul>
+    </nav>
+</header>
 
-{{outlet}}
+<main>
+    <h1>Hello World! {{fa-icon 'globe'}}</h1>
+    {{outlet}}
+</main>
+
+<footer>
+    &copy; Drivr | 2017
+</footer>
