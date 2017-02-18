@@ -1,8 +1,11 @@
 {{partial 'partials/header'}}
 
 <main>
-    <h1>Hello World! {{fa-icon 'globe'}}</h1>
-    {{outlet}}
+    {{partial 'partials/navigation'}}
+    <article>
+        {{outlet}}
+        {{partial 'partials/footer'}}
+    </article>
 </main>
 
-{{partial 'partials/footer'}}
+

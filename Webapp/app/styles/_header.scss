@@ -6,42 +6,24 @@
 /* SCSS */
 
 header {
-  background: $first-color;
+  background: $theme-900;
   display: block;
   height: $header-height;
+  position: static;
   width: 100%;
+  @include box-shadow($theme-300);
 }
 
-nav {
-  display: block;
+.bars {
+  color: $link-color;
+  cursor: pointer;
+  display: inline-block;
+  height: $header-height;
+  line-height: $header-height;
+  @include transition(0.4s);
 
-  ul {
-    display: inline-block;
-
-    li {
-      display: inline-block;
-      float: left;
-
-      a {
-        color: $link-color;
-        display: block;
-        line-height: $header-height;
-        text-decoration: none;
-        @include transition(0.4s);
-
-        &:active, &:hover {
-          background: darken($first-color, 5%);
-        }
-      }
-    }
-  }
-
-  ul.nav_left {
-    float: left;
-  }
-
-  ul.nav_right {
-    float: right;
+  &:hover {
+    background: $theme-800;
   }
 }
 

@@ -9,7 +9,10 @@
 
 /* STYLES */
 
-@import "header";
+@import 'header';
+@import 'footer';
+@import 'navigation';
+@import 'article';
 
 html {
 
@@ -21,4 +24,11 @@ body {
   font-size: $font-size;
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - #{$header-height});
 }

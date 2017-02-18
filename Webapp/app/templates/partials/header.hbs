@@ -1,11 +1,6 @@
 <header>
-    <nav class="nav nav--default">
-        <ul class="nav_left">
-            <li class="nav_item"><a class="padding-xs-left padding-xs-right" href="#">Drivr {{fa-icon 'car'}}</a></li>
-        </ul>
-        <ul class="nav_right">
-            <li class="nav_item"><a class="padding-xs-left padding-xs-right" href="#">Login {{fa-icon 'sign-in'}}</a></li>
-            <li class="nav_item"><a class="padding-xs-left padding-xs-right" href="#">Register {{fa-icon 'user-plus'}}</a></li>
-        </ul>
-    </nav>
+    <div class="bars padding-sm-left padding-sm-right" {{action 'toggleNavigation'}}>
+        {{fa-icon 'bars' }}
+        <span class="margin-xs">Drivr</span>
+    </div>
 </header>
