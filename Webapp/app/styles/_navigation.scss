@@ -7,8 +7,7 @@
 
 nav {
   background: $theme-800;
-  width: 0;
-  //@include transition(0.4s);
+  width: $navigation-width;
 
   ul {
     display: block;
@@ -23,17 +22,25 @@ nav {
         height: $navigation-height;
         line-height: $navigation-height;
         text-decoration: none;
-        @include transition(0.4s);
+        @include transition(0.2s);
 
         &:hover {
           background: $theme-700;
         }
+      }
+
+      span {
+        display: none;
       }
     }
   }
 
   &.open {
     width: $navigation-width-open;
+
+    span {
+      display: inline;
+    }
   }
 }
 
