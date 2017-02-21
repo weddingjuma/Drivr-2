@@ -1,0 +1,23 @@
+/* IMPORTS */
+
+@import 'variables';
+@import 'mixins';
+
+/* SCSS */
+
+footer {
+  bottom: 0;
+  height: $footer-height;
+  width: 100%;
+  position: absolute;
+
+  span {
+    color: $theme-200;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: $footer-height;
+    line-height: $footer-height;
+    text-align: center;
+  }
+}

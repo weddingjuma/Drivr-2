@@ -1,0 +1,38 @@
+/* 0. MAIN VARIABLES */
+
+$text-color: #212121;
+$link-color: #eceff1;
+$body-color: #eceff1;
+$font-size: 16px;
+
+/* 1. THEME */
+
+$theme-50: #eceff1;
+$theme-100: #cfd8dc;
+$theme-200: #b0bec5;
+$theme-300: #90a4ae;
+$theme-400: #78909c;
+$theme-500: #607d8b;
+$theme-600: #546e7a;
+$theme-700: #455a64;
+$theme-800: #37474f;
+$theme-900: #263238;
+
+/* 2. FILE */
+
+/* 2.1 _header.scss */
+
+$header-height: 60px;
+
+/* 2.2 _footer.scss */
+
+$footer-height: 60px;
+
+/* 2.3 _navigation.scss */
+
+$navigation-width: 60px;
+$navigation-height: 60px;
+$navigation-width-open: 300px;
+
+/* 2.4 _container.scss */
+
