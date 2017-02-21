@@ -51,9 +51,9 @@ namespace Drivr.WinPhone
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
+                // TODO: change this value to a cache size that is appropriate for your application
                 rootFrame = new Frame {CacheSize = 1};
 
-                // TODO: change this value to a cache size that is appropriate for your application
 
                 Forms.Init(e);
 

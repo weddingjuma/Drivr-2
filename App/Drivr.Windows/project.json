@@ -1,0 +1,11 @@
+﻿{
+  "dependencies": {
+  },
+  "frameworks": {
+    "netcore451": {
+    }
+  },
+  "runtimes": {
+    "win": {}
+  }
+}
