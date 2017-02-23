@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text;
 using API.Migrations;
 using API.Models;
@@ -54,6 +55,9 @@ namespace API
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var devPort = Configuration.GetValue<int>("iisSettings:iisExpress:sslPort");
+            Debug.WriteLine(devPort);
             app.Use(async (context, next) =>
             {
                 var request = context.Request;
@@ -64,8 +68,6 @@ namespace API
                 }
                 else
                 {
-                    var devPort = Configuration.GetValue<int>("iisSettings:iisExpress:sslPort");
-
                     var host = env.IsDevelopment()
                         ? new HostString(request.Host.Host, devPort)
                         : new HostString(request.Host.Host);
