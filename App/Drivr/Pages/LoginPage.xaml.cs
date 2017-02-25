@@ -14,9 +14,9 @@ namespace Drivr.Pages
             BindingContext = _loginPageViewModel;
         }
 
-        private void Button_OnClicked(object sender, EventArgs e)
+        private async void Button_OnClicked(object sender, EventArgs e)
         {
-            App.Drivr.Authenticate(_loginPageViewModel.Username, _loginPageViewModel.Password);
+            _loginPageViewModel.Status = await App.Drivr.Authenticate(_loginPageViewModel.Username, _loginPageViewModel.Password);
         }
     }
 }

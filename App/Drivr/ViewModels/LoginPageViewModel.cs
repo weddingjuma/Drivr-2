@@ -20,6 +20,15 @@ namespace Drivr.ViewModels
             set { _password = value; OnPropertyChanged(nameof(Password)); }
         }
 
+        private string _status;
+
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; OnPropertyChanged(nameof(Status)); }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

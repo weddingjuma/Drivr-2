@@ -60,24 +60,24 @@ namespace API
 
             var devPort = Configuration.GetValue<int>("iisSettings:iisExpress:sslPort");
             Debug.WriteLine(devPort);
-            app.Use(async (context, next) =>
-            {
-                var request = context.Request;
-
-                if (request.IsHttps)
-                {
-                    await next();
-                }
-                else
-                {
-                    var host = env.IsDevelopment()
-                        ? new HostString(request.Host.Host, devPort)
-                        : new HostString(request.Host.Host);
-
-                    string newUrl = $"https://{host}{request.PathBase}{request.Path}{request.QueryString}";
-                    context.Response.Redirect(newUrl, true);
-                }
-            });
+            //app.Use(async (context, next) =>
+            //{
+            //    var request = context.Request;
+            //
+            //    if (request.IsHttps)
+            //    {
+            //        await next();
+            //    }
+            //    else
+            //    {
+            //        var host = env.IsDevelopment()
+            //            ? new HostString(request.Host.Host, devPort)
+            //            : new HostString(request.Host.Host);
+            //
+            //        string newUrl = $"https://{host}{request.PathBase}{request.Path}{request.QueryString}";
+            //        context.Response.Redirect(newUrl, true);
+            //    }
+            //});
             //app.UseStaticFiles();
 
             app.UseIdentity();

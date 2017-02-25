@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -7,32 +8,42 @@ namespace Drivr.API
 {
     public class ApiWrapper
     {
-        private readonly string _token;
+        private string _token;
         private readonly string _uri;
         public ApiWrapper(string token)
         {
-            _uri = "https://localhost:44399"; //TODO: change API URI in production
             _token = token;
+            _uri = "http://169.254.80.80:55214";  //TODO: change API URI in production
         }
 
         public async Task<string> Authenticate(string username, string password)
         {
-            using (var client = new HttpClient())
+           
+            try
             {
-                client.DefaultRequestHeaders.Add("Content-Type", "application/x-www-form-urlencoded");
-                var body = new StringContent($"username={username}&password={password}");
-
-                var response = await client.PostAsync(_uri + "/token", body);
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var obj = JsonConvert.DeserializeObject<Token>(content);
-                    if (obj != null)
+                    var body = new StringContent($"username={username}&password={password}");
+                    body.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+                    client.BaseAddress = new Uri(_uri);
+                    var response = await client.PostAsync("token", body);
+
+                    if (response.IsSuccessStatusCode)
                     {
-                        return obj.AccessToken;
+                        var content = await response.Content.ReadAsStringAsync();
+                        var obj = JsonConvert.DeserializeObject<Token>(content);
+                        if (obj != null)
+                        {
+                            _token = obj.AccessToken;
+                            return obj.AccessToken;
+                        }
                     }
                 }
-
+            }
+            catch (Exception)
+            {
+                // TODO: Log error
             }
             return null;
         }
@@ -45,7 +56,8 @@ namespace Drivr.API
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
                 client.DefaultRequestHeaders.Add("Content-Type", "application/json");
 
-                var response = await client.GetAsync(_uri + query);
+                client.BaseAddress = new Uri(_uri);
+                var response = await client.GetAsync(query);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -58,7 +70,7 @@ namespace Drivr.API
                 return default(T);
             }
         }
-
+        
         public void Post()
         {
             
@@ -70,6 +82,6 @@ namespace Drivr.API
         [JsonProperty("access_token")]
         public string AccessToken { get; set; }
         [JsonProperty("expires_in")]
-        public TimeSpan ExpiresIn { get; set; }
+        public int ExpiresIn { get; set; }
     }
 }

@@ -10,5 +10,6 @@
     <Entry Placeholder="username" Text="{Binding Username}"/>
     <Entry Placeholder="password" IsPassword="True" Text="{Binding Password}" />
     <Button Text="Log in" Clicked="Button_OnClicked"/>
+      <Label Text="{Binding Status}"/>
   </StackLayout>
 </ContentPage>

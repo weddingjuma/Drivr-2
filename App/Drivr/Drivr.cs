@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using ClassLibrary.User;
 using Drivr.Annotations;
 using Drivr.API;
@@ -27,19 +27,19 @@ namespace Drivr
             LoadStartupSettings();
         }
 
-        private async void LoadStartupSettings()
+        private void LoadStartupSettings()
         {
             _token = CrossSettings.Current.GetValueOrDefault<string>("access_token");
+            ApiWrapper = new ApiWrapper(_token);
 
             if (!string.IsNullOrWhiteSpace(_token))
             {
-                ApiWrapper = new ApiWrapper(_token);
-                var userTask = ApiWrapper.Get<User>("/api/User");
-                await userTask.ContinueWith(t =>
-                {
-                    CurrentUser = t.Result;
-                    IsAuthenticated = !EqualityComparer<User>.Default.Equals(CurrentUser, default(User));
-                });
+                //var userTask = ApiWrapper.Get<User>("/api/User");
+                //await userTask.ContinueWith(t =>
+                //{
+                //    CurrentUser = t.Result;
+                //    IsAuthenticated = !EqualityComparer<User>.Default.Equals(CurrentUser, default(User));
+                //});
             }
             else
             {
@@ -47,15 +47,12 @@ namespace Drivr
             }
         }
 
-        public async void Authenticate(string username, string password)
+        public async Task<string> Authenticate(string username, string password)
         {
-            var authTask = ApiWrapper.Authenticate(username, password);
-            await authTask.ContinueWith(t =>
-            {
-                _token = t.Result;
-                CrossSettings.Current.AddOrUpdateValue("access_token", _token);
-                LoadStartupSettings();
-            });
+            _token = await ApiWrapper.Authenticate(username, password);
+            CrossSettings.Current.AddOrUpdateValue("access_token", _token);
+            LoadStartupSettings();
+            return _token;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
