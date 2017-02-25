@@ -1,6 +1,5 @@
 ﻿using System;
 using Drivr.ViewModels;
-using Xamarin.Forms;
 
 namespace Drivr.Pages
 {
@@ -14,9 +13,9 @@ namespace Drivr.Pages
             BindingContext = _loginPageViewModel;
         }
 
-        private async void Button_OnClicked(object sender, EventArgs e)
+        private void Button_OnClicked(object sender, EventArgs e)
         {
-            _loginPageViewModel.Status = await App.Drivr.Authenticate(_loginPageViewModel.Username, _loginPageViewModel.Password);
+            App.Drivr.Authenticate(_loginPageViewModel.Username, _loginPageViewModel.Password);
         }
     }
 }

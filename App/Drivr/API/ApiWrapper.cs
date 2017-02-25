@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Drivr.Models;
 using Newtonsoft.Json;
 
 namespace Drivr.API
@@ -16,12 +17,13 @@ namespace Drivr.API
             _uri = "http://169.254.80.80:55214";  //TODO: change API URI in production
         }
 
-        public async Task<string> Authenticate(string username, string password)
+        public async Task<ApiResponse<string>> Authenticate(string username, string password)
         {
-           
-            try
+            var apiResponse = new ApiResponse<string>();
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
+
+                try
                 {
                     var body = new StringContent($"username={username}&password={password}");
                     body.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
@@ -36,38 +38,47 @@ namespace Drivr.API
                         if (obj != null)
                         {
                             _token = obj.AccessToken;
-                            return obj.AccessToken;
+                            apiResponse.Object = _token;
                         }
                     }
                 }
+                catch (Exception exception)
+                {
+                    // TODO: Log error
+                    apiResponse.Error = exception.Message;
+                }
             }
-            catch (Exception)
-            {
-                // TODO: Log error
-            }
-            return null;
+            return apiResponse;
         }
 
-        public async Task<T> Get<T>(string query)
+        public async Task<ApiResponse<T>> Get<T>(string query) where T : class
         {
+            var apiResponse = new ApiResponse<T>();
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + _token);
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
-                client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-
-                client.BaseAddress = new Uri(_uri);
-                var response = await client.GetAsync(query);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var obj = JsonConvert.DeserializeObject<T>(content);
-                    if (obj != null)
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + _token);
+                    client.DefaultRequestHeaders.Add("Accept", "application/json");
+                    //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+
+                    client.BaseAddress = new Uri(_uri);
+                    var response = await client.GetAsync(query);
+                    if (response.IsSuccessStatusCode)
                     {
-                        return obj;
+                        var content = await response.Content.ReadAsStringAsync();
+                        var obj = JsonConvert.DeserializeObject<T>(content);
+                        if (obj != null)
+                        {
+                            apiResponse.Object = obj;
+                        }
                     }
                 }
-                return default(T);
+                catch (Exception exception)
+                {
+                    apiResponse.Error = exception.ToString();
+                }
+                return apiResponse;
             }
         }
         
