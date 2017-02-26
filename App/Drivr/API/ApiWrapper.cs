@@ -60,7 +60,6 @@ namespace Drivr.API
                 {
                     client.DefaultRequestHeaders.Add("Authorization", "Bearer " + _token);
                     client.DefaultRequestHeaders.Add("Accept", "application/json");
-                    //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
 
                     client.BaseAddress = new Uri(_uri);
                     var response = await client.GetAsync(query);

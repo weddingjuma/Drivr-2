@@ -7,7 +7,7 @@ namespace Drivr.Pages
         public MainPage()
         {
             InitializeComponent();
-            Hello hello = new Hello();
+            var hello = new Hello();
             Label.Text = hello.World;
         }
     }

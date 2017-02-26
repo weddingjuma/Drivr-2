@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using ClassLibrary.User;
 using Drivr.Annotations;
 using Drivr.API;
+using Drivr.Helpers;
+using Drivr.Models;
 using Plugin.Settings;
 
 namespace Drivr
@@ -29,20 +31,16 @@ namespace Drivr
             LoadStartupSettings();
         }
 
-        private async void LoadStartupSettings()
+        private void LoadStartupSettings()
         {
             _token = CrossSettings.Current.GetValueOrDefault<string>("access_token");
             ApiWrapper = new ApiWrapper(_token);
 
             if (!string.IsNullOrWhiteSpace(_token))
             {
-                var userTask = ApiWrapper.Get<User>("api/User");
-                await userTask.ContinueWith(t =>
-                {
-                    if (!t.Status.Equals(TaskStatus.RanToCompletion)) return;
-                    CurrentUser = t.Result.Object;
-                    IsAuthenticated = !EqualityComparer<User>.Default.Equals(CurrentUser, default(User));
-                });
+                var user = AsyncHelpers.RunSync(() => ApiWrapper.Get<User>("api/User"));
+                CurrentUser = user.Object;
+                IsAuthenticated = !EqualityComparer<User>.Default.Equals(CurrentUser, default(User));
             }
             else
             {
