@@ -1,14 +1,16 @@
 ﻿using Drivr.Pages;
+using Xamarin.Forms;
 
 namespace Drivr
 {
     public partial class App
     {
+        public static Drivr Drivr;
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            Drivr = new Drivr();
+            MainPage = Drivr.IsAuthenticated ? (Page) new MainPage() : new LoginPage();
         }
 
         protected override void OnStart()

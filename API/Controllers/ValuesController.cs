@@ -11,7 +11,7 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            Hello hello = new Hello();
+            var hello = new Hello();
             return new[] { "value1", "value2", nameof(hello) , hello.World };
         }
 
