@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using ClassLibrary.User;
 using Drivr.Annotations;
 using Drivr.API;
-using Drivr.Helpers;
-using Drivr.Models;
 using Plugin.Settings;
 
 namespace Drivr
@@ -26,36 +24,38 @@ namespace Drivr
             set { _currentUser = value; OnPropertyChanged(nameof(CurrentUser)); }
         }
 
-        public Drivr()
-        {
-            LoadStartupSettings();
-        }
-
-        private void LoadStartupSettings()
+        public async Task<bool> InitAuthentication()
         {
             _token = CrossSettings.Current.GetValueOrDefault<string>("access_token");
             ApiWrapper = new ApiWrapper(_token);
 
-            if (!string.IsNullOrWhiteSpace(_token))
+            if (string.IsNullOrWhiteSpace(_token)) return false;
+            var task = ApiWrapper.Get<User>("api/User");
+            await task.ContinueWith(t =>
             {
-                var user = AsyncHelpers.RunSync(() => ApiWrapper.Get<User>("api/User"));
-                CurrentUser = user.Object;
-                IsAuthenticated = !EqualityComparer<User>.Default.Equals(CurrentUser, default(User));
-            }
-            else
-            {
-                IsAuthenticated = false;
-            }
+                if (string.IsNullOrWhiteSpace(t.Result.Error) || !EqualityComparer<User>.Default.Equals(t.Result.Object, default(User)))  //TODO: set to EqualityComparer to true 
+                {
+                    //TODO log error
+                    return false;
+                }
+                CurrentUser = t.Result.Object;
+                return true;
+            });
+            return false;
         }
 
         public async void Authenticate(string username, string password)
         {
             var task = ApiWrapper.Authenticate(username, password);
-            await task.ContinueWith(t =>
+            await task.ContinueWith(async t =>
             {
                 _token = t.Result.Object;
                 CrossSettings.Current.AddOrUpdateValue("access_token", _token);
-                LoadStartupSettings();
+                var auth = InitAuthentication();
+                await auth.ContinueWith(r =>
+                {
+                    IsAuthenticated = r.Result;
+                });
             });
         }
 

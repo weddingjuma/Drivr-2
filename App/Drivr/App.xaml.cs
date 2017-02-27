@@ -10,7 +10,7 @@ namespace Drivr
         {
             InitializeComponent();
             Drivr = new Drivr();
-            MainPage = Drivr.IsAuthenticated ? (Page) new MainPage() : new LoginPage();
+            MainPage = new NavigationPage(new InitPage());//new MainPage());
         }
 
         protected override void OnStart()

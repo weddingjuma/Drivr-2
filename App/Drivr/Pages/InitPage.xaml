@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Drivr.ViewModels;assembly=Drivr"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:InitPageViewModel}"
+             x:Class="Drivr.Pages.InitPage">
+
+    <StackLayout Padding="20" VerticalOptions="Center">
+        <Label Text="Drivr" HorizontalTextAlignment="Center" FontSize="20"/>
+        <ProgressBar Progress="{Binding Progress}"/>
+        <Label Text="{Binding Status}" FontAttributes="Italic" HorizontalTextAlignment="Center" FontSize="15"/>
+    </StackLayout>
+</ContentPage>
