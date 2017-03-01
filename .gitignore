@@ -270,3 +270,5 @@ paket-files/
 /API/appsettings.json
 /API/Services/Seed.cs
 /API/Migrations/**.*
+
+.DS_Store
