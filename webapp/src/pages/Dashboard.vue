@@ -1,7 +1,8 @@
 <template>
 <div id="app">
-    <router-link to="/dashboard">Dashboard</router-link>
-    <router-view></router-view>
+    <div class="dashboard">
+        Dashboard
+    </div>
 </div>
 </template>
 
@@ -11,15 +12,17 @@ export default {
     name: 'app',
     data() {
         return {
-
+            dataset: null
         }
     },
     mounted() {
-        this.$router.push('/dashboard');
+
     }
 }
 </script>
 
 <style lang="scss" scoped>
+    .dashboard {
 
+    }
 </style>
